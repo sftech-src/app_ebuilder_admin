@@ -1,0 +1,77 @@
+<sftech-base-dialog (closed)="close()">
+  <ng-template #body>
+    <div class="h-full overflow-auto">
+      @if (model()) {
+        <form [formGroup]="form">
+          <p-fieldset legend="Stammdaten">
+            @if (!isNew()) {
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <p-floatlabel variant="in" class="w-full">
+                  <input
+                    type="text"
+                    id="id"
+                    formControlName="id"
+                    pInputText
+                    class="w-full"
+                  />
+                  <label for="id">ID</label>
+                </p-floatlabel>
+              </div>
+            }
+
+            <p-floatlabel variant="in" class="w-full mt-2">
+              <input
+                type="text"
+                id="name"
+                formControlName="name"
+                pInputText
+                class="w-full"
+                [class.ng-invalid]="
+                  form.get('name')?.dirty && form.get('name')?.invalid
+                "
+              />
+              <label for="name">Name *</label>
+            </p-floatlabel>
+
+            <p-floatlabel variant="in" class="w-full mt-2">
+              <textarea
+                rows="3"
+                id="description"
+                formControlName="description"
+                pTextarea
+                class="w-full"
+              ></textarea>
+              <label for="description">Beschreibung</label>
+            </p-floatlabel>
+
+            <p-floatlabel variant="in" class="w-full mt-2">
+              <input
+                type="text"
+                id="deviceUuid"
+                formControlName="deviceUuid"
+                pInputText
+                class="w-full"
+              />
+              <label for="deviceUuid">Geraete-UUID</label>
+            </p-floatlabel>
+          </p-fieldset>
+
+          @if (!isNew() && model()!.storage) {
+            <p-fieldset legend="Gebaeudedaten (Read-Only)" class="mt-4">
+              <pre class="overflow-auto max-h-96 text-sm bg-gray-50 p-4 rounded">{{ model()!.storage | json }}</pre>
+            </p-fieldset>
+          }
+        </form>
+      }
+    </div>
+  </ng-template>
+  <ng-template #footer>
+    <div class="flex justify-end mt-2">
+      <p-button
+        label="Speichern"
+        (onClick)="submitForm()"
+        [disabled]="!form || !form.dirty || form.invalid"
+      ></p-button>
+    </div>
+  </ng-template>
+</sftech-base-dialog>

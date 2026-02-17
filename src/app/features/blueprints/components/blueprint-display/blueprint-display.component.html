@@ -1,0 +1,127 @@
+<sftech-base-dialog (closed)="close()">
+  <ng-template #body>
+    <div class="h-full overflow-auto">
+      @if (model()) {
+        <form [formGroup]="form">
+          <p-fieldset legend="Stammdaten">
+            @if (!isNew()) {
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <p-floatlabel variant="in" class="w-full">
+                  <input type="text" id="id" formControlName="id" pInputText class="w-full" />
+                  <label for="id">ID</label>
+                </p-floatlabel>
+              </div>
+            }
+
+            <p-floatlabel variant="in" class="w-full mt-2">
+              <input
+                type="text" id="name" formControlName="name" pInputText class="w-full"
+                [class.ng-invalid]="form.get('name')?.dirty && form.get('name')?.invalid"
+              />
+              <label for="name">Name *</label>
+            </p-floatlabel>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+              <p-floatlabel variant="in" class="w-full">
+                <input type="text" id="articleNumber" formControlName="articleNumber" pInputText class="w-full" />
+                <label for="articleNumber">Artikelnummer</label>
+              </p-floatlabel>
+              <p-floatlabel variant="in" class="w-full">
+                <input type="text" id="ean" formControlName="ean" pInputText class="w-full" />
+                <label for="ean">EAN</label>
+              </p-floatlabel>
+            </div>
+
+            <p-floatlabel variant="in" class="w-full mt-2">
+              <input type="text" id="identifier" formControlName="identifier" pInputText class="w-full" />
+              <label for="identifier">Identifier</label>
+            </p-floatlabel>
+
+            <p-floatlabel variant="in" class="w-full mt-2">
+              <input type="text" id="url" formControlName="url" pInputText class="w-full" />
+              <label for="url">URL</label>
+            </p-floatlabel>
+          </p-fieldset>
+
+          <p-fieldset legend="Geraetetyp" class="mt-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <p-floatlabel variant="in" class="w-full">
+                <input type="text" id="actorType" formControlName="actorType" pInputText class="w-full" />
+                <label for="actorType">Aktortyp</label>
+              </p-floatlabel>
+              <p-floatlabel variant="in" class="w-full">
+                <input type="text" id="connectionType" formControlName="connectionType" pInputText class="w-full" />
+                <label for="connectionType">Anschlusstyp</label>
+              </p-floatlabel>
+            </div>
+
+            <p-floatlabel variant="in" class="w-full mt-2">
+              <textarea rows="3" id="functions" formControlName="functions" pTextarea class="w-full"></textarea>
+              <label for="functions">Funktionen</label>
+            </p-floatlabel>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+              <p-floatlabel variant="in" class="w-full">
+                <input type="text" id="mountingType" formControlName="mountingType" pInputText class="w-full" />
+                <label for="mountingType">Montageart</label>
+              </p-floatlabel>
+              <p-floatlabel variant="in" class="w-full">
+                <input type="text" id="partitionUnit" formControlName="partitionUnit" pInputText class="w-full" />
+                <label for="partitionUnit">Teilungseinheit</label>
+              </p-floatlabel>
+            </div>
+
+            <div class="flex items-center mt-2">
+              <p-checkbox formControlName="isOutdoorEligible" [binary]="true" inputId="isOutdoorEligible"></p-checkbox>
+              <label for="isOutdoorEligible" class="ml-2">Aussen geeignet</label>
+            </div>
+          </p-fieldset>
+
+          <p-fieldset legend="Technische Daten" class="mt-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <p-floatlabel variant="in" class="w-full">
+                <input type="number" id="powerConsumption" formControlName="powerConsumption" pInputText class="w-full" />
+                <label for="powerConsumption">Leistungsaufnahme (W)</label>
+              </p-floatlabel>
+              <p-floatlabel variant="in" class="w-full">
+                <input type="number" id="thermalLoss" formControlName="thermalLoss" pInputText class="w-full" />
+                <label for="thermalLoss">Verlustleistung (W)</label>
+              </p-floatlabel>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+              <p-floatlabel variant="in" class="w-full">
+                <input type="number" id="numberOfInputs" formControlName="numberOfInputs" pInputText class="w-full" />
+                <label for="numberOfInputs">Eingaenge</label>
+              </p-floatlabel>
+              <p-floatlabel variant="in" class="w-full">
+                <input type="number" id="numberOfOutputs" formControlName="numberOfOutputs" pInputText class="w-full" />
+                <label for="numberOfOutputs">Ausgaenge</label>
+              </p-floatlabel>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+              <p-floatlabel variant="in" class="w-full">
+                <input type="number" id="price" formControlName="price" pInputText class="w-full" />
+                <label for="price">Preis</label>
+              </p-floatlabel>
+              <p-floatlabel variant="in" class="w-full">
+                <input type="text" id="lastPriceUpdate" formControlName="lastPriceUpdate" pInputText class="w-full" />
+                <label for="lastPriceUpdate">Letztes Preisupdate</label>
+              </p-floatlabel>
+            </div>
+          </p-fieldset>
+        </form>
+      }
+    </div>
+  </ng-template>
+  <ng-template #footer>
+    <div class="flex justify-end mt-2">
+      <p-button
+        label="Speichern"
+        (onClick)="submitForm()"
+        [disabled]="!form || !form.dirty || form.invalid"
+      ></p-button>
+    </div>
+  </ng-template>
+</sftech-base-dialog>

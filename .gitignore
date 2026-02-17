@@ -1,0 +1,9 @@
+node_modules/
+dist/
+tmp/
+.angular/
+.nx/
+*.log
+.env*
+.DS_Store
+Thumbs.db

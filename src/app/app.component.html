@@ -1,0 +1,17 @@
+<sftech-head-main-footer-with-canvas [maxWidth]="'1200px'" [navigationItems]="navigation">
+  <ng-template #header>
+    <div class="flex items-center">
+      <span class="text-lg font-bold">EBuilder Admin</span>
+    </div>
+  </ng-template>
+  <ng-template #main>
+    <router-outlet></router-outlet>
+  </ng-template>
+  <ng-template #footer>
+    <footer class="w-full">
+      <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
+        <span class="text-white/70 text-sm">&copy; {{ currentYear }} SF Technology</span>
+      </div>
+    </footer>
+  </ng-template>
+</sftech-head-main-footer-with-canvas>
