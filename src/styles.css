@@ -1,2 +1,3 @@
-@use "tailwindcss";
+@import "tailwindcss";
+@source "../node_modules/@sftech/ng-shared/fesm2022";
 @plugin "tailwindcss-primeui";
