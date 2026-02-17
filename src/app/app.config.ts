@@ -1,7 +1,8 @@
-import { provideHttpClient } from '@angular/common/http';
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
+import { AuthConfigMapper, AuthModule, authenticationInterceptor } from '@sftech/ng-auth';
 import { IAppConfig } from '@sftech/ng-shared';
 import { EBuilderPreset } from './ebuilder.preset';
 import { MessageService } from 'primeng/api';
@@ -13,8 +14,9 @@ export function appConfig(config: IAppConfig): ApplicationConfig {
     providers: [
       provideZoneChangeDetection({ eventCoalescing: true }),
       provideRouter(appRoutes),
-      provideHttpClient(),
+      provideHttpClient(withInterceptors([authenticationInterceptor])),
       provideAnimations(),
+      importProvidersFrom(AuthModule.forRoot(AuthConfigMapper.map(config))),
       providePrimeNG({
         ripple: true,
         theme: {
