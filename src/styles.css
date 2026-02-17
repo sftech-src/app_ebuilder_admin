@@ -1,3 +1,27 @@
 @import "tailwindcss";
 @source "../node_modules/@sftech/ng-shared/fesm2022";
 @plugin "tailwindcss-primeui";
+
+/* Dark theme overrides for HeadMainFooterWithCanvasComponent */
+sftech-head-main-footer-with-canvas > div {
+  background: #1a1a1a !important;
+}
+
+sftech-head-main-footer-with-canvas main > div {
+  background: #333333 !important;
+  color: #ffffff;
+}
+
+/* Dark drawer */
+sftech-head-main-footer-with-canvas p-drawer .flex.flex-col.h-full {
+  background: #1a1a1a !important;
+  color: #ffffff;
+}
+
+sftech-head-main-footer-with-canvas p-drawer .border-b {
+  border-color: #434343 !important;
+}
+
+sftech-head-main-footer-with-canvas p-drawer .text-primary {
+  color: #58da58 !important;
+}
